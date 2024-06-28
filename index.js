@@ -112,16 +112,17 @@ function getWeatherImage(iconCode) {
 
 app.get('/', async (req, res) => {
     let quote = JSON.parse(await fs.readFileSync("quote.json", "utf8"))
+    
     if (Date.now() - quote.updated > 36000000) {    //If is more than 10 hours since the last update 
         let response = await axios.get('https://quotes.rest/qod', {
             headers: {
                 Authorization: `Bearer ${process.env.theySaidSoApi}` //BearerAuth  (http, Bearer)
             }
 
-        }).catch(err => console.log(err.response.data));
-        if (!response?.data) {
+        }).catch(err => console.log(err.response));
+        if (response?.data?.status != 200) {
             console.log("Error getting the quote");
-            return res.render('index', { quote: quote, cod: "Error getting the quote", data: "" });
+            return res.render('index', { quote: quote, cod: response?.data?.status || "???", data: response?.data?.message || "Error getting the quote" });
         }
 
         quote = {
@@ -130,7 +131,7 @@ app.get('/', async (req, res) => {
         }
 
         fs.writeFileSync("quote.json", JSON.stringify(quote, null, 3));
-    }
+    }  
 
     res.render('index', { quote: quote.quote, cod: "", data: "" });
 });
@@ -148,8 +149,6 @@ function formatAMPM(date) {
 }
 
 app.get('/search', async (req, res) => {
-    console.log(req.query)
-
     const city = req.query?.q
     const language = "en-US"
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=74993d8cb3cae83baf35b81ce4950341&units=metric&lang=${language}`;
@@ -157,7 +156,6 @@ app.get('/search', async (req, res) => {
     try {
         const response = await axios.get(url);
         const weatherData = response.data;
-        console.log(weatherData)
         var iconamars = getWeatherEmoji(weatherData.weather[0].icon)
         weatherData.weather[0].description = weatherData.weather[0].description.charAt(0).toUpperCase() + weatherData.weather[0].description.slice(1);
 

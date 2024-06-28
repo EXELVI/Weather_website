@@ -24,11 +24,11 @@
 <!-- sei marso!!! -->
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid">   
         <div class="sfondo-esteso"><img class="position-absolute img-fluid" src=<%=image%>></div>
-
-        <h1 id="eccoleprevisioni" class="text-center mt-2">Here is the forecast for <strong>
-                <%=weatherData.name%>
+        
+        <h1 id="eccoleprevisioni" class="text-center mt-2" >Here is the forecast for <strong>
+                <%=weatherData.name%>, <%=weatherData.sys.country%>
             </strong></h1>
 
         <div class="container-md mt-4" style="z-index: 3;">
@@ -41,58 +41,69 @@
                         <%=weatherData.weather[0].description%>
                     </h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="bi bi-thermometer-half"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Temperature"
+                            class="list-group-item"><i class="bi bi-thermometer-half"></i>
                             <%=weatherData.main.temp%> °C
                         </li>
-                        <li class="list-group-item"><i class="bi bi-thermometer-sun"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Feels Like"
+                            class="list-group-item"><i class="bi bi-thermometer-sun"></i>
                             <%=weatherData.main.feels_like%> °C
                         </li>
-                        <li class="list-group-item"><i class="bi bi-thermometer-low"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Minimum temperature"
+                            class="list-group-item"><i class="bi bi-thermometer-low"></i>
                             <%=weatherData.main.temp_min%> °C
                         </li>
-                        <li class="list-group-item"><i class="bi bi-thermometer-high"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Maximum temperature"
+                            class="list-group-item"><i class="bi bi-thermometer-high"></i>
                             <%=weatherData.main.temp_max%> °C
                         </li>
-                        <li class="list-group-item"><i class="bi bi-arrow-bar-down"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Pressure"
+                            class="list-group-item"><i class="bi bi-arrow-bar-down"></i>
                             <%=weatherData.main.pressure%> hPa
                         </li>
-                        <li class="list-group-item"><i class="bi bi-droplet-half"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Humidity"
+                            class="list-group-item"><i class="bi bi-droplet-half"></i>
                             <%=weatherData.main.humidity%>%
                         </li>
                         <li class="list-group-item"><i class="bi bi-wind"></i>
                             <ul>
-                                <li><i class="bi bi-signpost-split"></i>
+                                <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Wind Direction"><i
+                                        class="bi bi-signpost-split"></i>
                                     <%=weatherData.wind.deg%>°
                                 </li>
-                                <li><i class="bi bi-speedometer2"></i>
+                                <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Wind speed"><i
+                                        class="bi bi-speedometer2"></i>
                                     <%=weatherData.wind.speed%> km/h
                                 </li>
                             </ul>
 
                         </li>
-                        <li class="list-group-item"><i class="bi bi-sunrise"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Sunrise"
+                            class="list-group-item"><i class="bi bi-sunrise"></i>
                             <%=formatAMPM(new Date(weatherData.sys.sunrise * 1000))%>
                         </li>
-                        <li class="list-group-item"><i class="bi bi-sunset"></i>
+                        <li data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Sunset"
+                            class="list-group-item"><i class="bi bi-sunset"></i>
                             <%=formatAMPM(new Date(weatherData.sys.sunset * 1000))%>
                         </li>
                     </ul>
                 </div>
             </div>
-            <p><i class="bi bi-globe2"></i> <a>
+            <p><i class="bi bi-globe2"></i> <a data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="Latitudine">
                     <%=weatherData.coord.lat%>
-                </a>, <a>
+                </a>, <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Longitudine">
                     <%=weatherData.coord.lon%>
                 </a></p>
-            <div class="position-fixed bottom-0 start-50 translate-middle " style="z-index: 1;" hidden="true"
-                aria-hidden="true">
-                <form id="formmmmarsa" class="d-grid gap-2" action="/search" method="GET">
-                    <input id="textbox" class="form-control fs-2 " type="text" name="q" placeholder="City..." required>
-                    <button id="scoprire" type="submit" class="btn btn-primary mt-3 btn-lg fs-2">Search</button>
-                </form>
-            </div>
+                <div class="position-fixed bottom-0 start-50 translate-middle " style="z-index: 1;" hidden="true" aria-hidden="true">
+                    <form id="formmmmarsa" class="d-grid gap-2" action="/search" method="GET">
+                        <input id="textbox" class="form-control fs-2 " type="text" name="q" placeholder="City..."
+                            required>
+                        <button id="scoprire" type="submit" class="btn btn-primary mt-3 btn-lg fs-2">Search</button>
+                    </form>
+                </div>
         </div>
-
+      
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
