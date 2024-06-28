@@ -40,8 +40,7 @@ app.get('/', async (req, res) => {
         fs.writeFileSync("quote.json", JSON.stringify(quote, null, 3));
     }
 
-
-    res.render('index', { quote: quote });
+    res.render('index', { quote: quote.quote, cod: "", data: "" });
 
 });
 http.createServer(app).listen(portHttp, () => {

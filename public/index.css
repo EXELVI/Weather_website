@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'SF Pro';
+    src: url('SF-Pro.eot');
+    /* IE9 Compat Modes */
+    src: url('SF-Pro.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('SF-Pro.woff') format('woff'),
+        /* Modern Browsers */
+        url('SF-Pro.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('SF-Pro') format('svg');
+    /* Legacy iOS */
+}
+
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, 'DynaPuff';
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+#titolo {
+    text-align: center;
+    border: 3px;
+    font-family: "SF Pro";
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: #282b2b 8px 0 15px;
+}
+
+
+#eccoleprevisioni {
+    border: 3px;
+    font-family: "SF Pro";
+    font-size: 50px;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: #4b79a154 8px 0 15px;
+}
+
+#frasedelgiorno {
+    background: #4B79A1;
+    background: -webkit-linear-gradient(to right, #282b2b, #5b636c);
+    background: linear-gradient(to right, #282b2b, #5b636c);
+}
+
+#textbox {
+    display: block;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    outline: none;
+    width: 100%;
+    font-weight: 400;
+}
+
+#textbox:placeholder {
+    color: rgba(255, 255, 255, .5);
+
+}
+
+#scoprire {
+    border: none;
+    background: #4B79A1;
+    background: -webkit-linear-gradient(to right, #282b2b, #5b636c);
+    background: linear-gradient(to right, #282b2b, #5b636c);
+    padding: 20px;
+}
+
+#scoprire:hover {
+    opacity: .9;
+}
+
+
+.sfondo-esteso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(8px);
+    pointer-events: none;
+}
+
+.sfondo-esteso img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+
+}

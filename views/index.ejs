@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="it" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Carter+One&family=DynaPuff:wght@400..700&family=Silkscreen:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="sfondo-esteso"><img src="/brokenClouds.jpg"></div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+            data-bs-autohide="false">
+            <div class="toast-header">
+                <i class="bi bi-exclamation-diamond-fill me-2 text-danger"></i>
+                <strong class="me-auto text-danger">Error <%=cod%></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <%=data%>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid d-flex flex-column" style="min-height: 100vh;">
+        <h1 id="titolo" class="mt-2" style="font-size: 84px">Weather</h1>
+        <form id="formmmmarsa" class="d-grid gap-2" action="/search" method="GET">
+            <input id="textbox" class="form-control fs-2" type="text" name="q" placeholder="City to search..." required>
+            <button id="scoprire" type="submit" class="btn btn-primary mt-3 btn-lg fs-2">Search</button>
+        </form>
+        <div class="card mt-auto start-50 translate-middle" style="width: 50%; z-index: -1;">
+            <div id="frasedelgiorno" class="card-header">
+                Quote of the day
+            </div>
+            <div class="card-body mt-auto">
+                <blockquote class="blockquote mb-0">
+                    <p>
+                        <%=quote.quote%>
+                    </p>
+                    <footer class="blockquote-footer">
+                        <%=quote.author%> <cite title="title">
+                                <%=quote.title%>
+                            </cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+            const errorToast = document.getElementById('errorToast')
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(errorToast)
+            if ("<%=data%>") toastBootstrap.show()
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
