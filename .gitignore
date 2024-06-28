@@ -2,8 +2,8 @@
 node_modules/
 localhost.key
 localhost.crt
-public/brokenClouds.jpg
 public/SF-Pro.eot
 public/SF-Pro.ttf
 public/SF-Pro.woff
 public/SF-Pro.svg
+public/images/
