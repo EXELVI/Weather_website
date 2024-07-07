@@ -122,6 +122,7 @@ app.get('/', async (req, res) => {
         }).catch(err => console.log(err.response));
         if (response?.data?.status != 200) {
             console.log("Error getting the quote");
+            console.log(response?.data?.status, response?.data?.message);
             return res.render('index', { quote: quote, cod: response?.data?.status || "???", data: response?.data?.message || "Error getting the quote" });
         }
 
@@ -151,7 +152,7 @@ function formatAMPM(date) {
 app.get('/search', async (req, res) => {
     const city = req.query?.q
     const language = "en-US"
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=74993d8cb3cae83baf35b81ce4950341&units=metric&lang=${language}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.apiKey}&units=metric&lang=${language}`;
 
     try {
         const response = await axios.get(url);
